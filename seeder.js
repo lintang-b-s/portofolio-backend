@@ -12,6 +12,8 @@ import  { Project } from  "./models/projectModel.js";
 import  connectDB  from "./config/db.js";
 import User  from "./models/userModel.js";
 import user from "./data/user.js"
+import activities from "./data/activities.js";
+import {Activities } from "./models/activityModel.js"
 
 connectDB();
 
@@ -46,6 +48,12 @@ const importData = async () => {
 
         // await ProjectImage.insertMany(sampleProjectImages) 
 
+        const sampleActivities = activities.map((actvities) => {
+            return { ...activities}
+        })
+
+        await Activities.insertMany(sampleActivities);
+
         const sampleProjects = projects.map((project) => {
             return { ...project }
         })
@@ -58,15 +66,21 @@ const importData = async () => {
         })
         
         await Organizations.insertMany(sampleOrganizations);
-        //jagnan lupa masukin organisasi dan project ke profiles
+      
         let idOrganization = await Organizations.find({}).select("_id");
-        let organiz;
-        let projt;
+        let idProjects = await Project.find({}).select("_id");
+        let idActivities =  await Activities.find({}).select("_id");
+        let organiz ;
+        let projt ;
+        let actv;
+
+
 
         let idProject = await Project.find({}).select("_id");
-        for (let i=0; i<idOrganization.length;i++ ) {
-            organiz = idOrganization[i]._id;
-            projt = idProject[i]._id;
+        for (let i=0; i<1;i++ ) {
+            organiz = (idOrganization[i]._id);
+            projt = (idProjects[i]._id);
+            actv =  idActivities[i]._id
         }
      
         const profiles = new Profile({
@@ -78,7 +92,8 @@ const importData = async () => {
             birthDate: `${profile[0].birthDate}`,
             technologies: sampleTechnologies,
             organizations: organiz,
-            projects : projt
+            projects : projt,
+            activities: actv 
 
         })
 
@@ -89,6 +104,7 @@ const importData = async () => {
             ;
         console.log(idProf[0].organizations[0].name)
         console.log(idProf[0].projects)
+
         process.exit();
        
 

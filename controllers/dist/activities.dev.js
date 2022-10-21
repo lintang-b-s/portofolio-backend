@@ -204,7 +204,12 @@ var putActivitiesById = function putActivitiesById(req, res) {
           activities.date1 = date1 || activities.date1;
           activities.date2 = date2 || activities.date2;
           activities.profile = profile || activities.profile;
-          activities.affiliation = affiliation || activities.affiliation;
+          activities.affiliation = affiliation || activities.affiliation._id; // if(activities){
+          //     activities.affiliation = affiliation
+          // }else{
+          //     activities.affiliation = activities.affiliation._id
+          // }
+
           activities.profile = profile || activities.profile;
           console.log("req.body: \n", req.body);
           console.log("profile: ", profile);

@@ -25,7 +25,16 @@ const postNewOrganization = async(req, res) => {
         }else {
             req.body.images = " ";
         }
+        
+        //salah
         const createdOrganization = new Organizations(req.body);
+        if (req.body.activities){
+            createdOrganization.activities.push(req.body.activities)
+        }
+        if (req.body.projects){
+            createdOrganization.projects.push(req.body.projects);
+        }
+
         
         await createdOrganization.save();
         res.status(201).json(createdOrganization)
@@ -78,14 +87,23 @@ const putOrganizationById = async(req, res) => {
         organization.name = name || organization.name;
         organization.position = position || organization.position;
         organization.date1 = date1 || organization.date1;
-        organization.date2 = date2 || organization.date2;
+        if( date2 ){
+            organization.date2 = date2
+        }
+        organization.date2 =  organization.date2;
         if (req.file) {
             organization.images = req.file.path
         }else {
             organization.images = organization.images;
         }
-        organization.activities = activities || organization.activities;
-        organization.projects = projects || organization.projects;
+        if (activities){
+            organization.activities.push(activities);
+        }
+        // organization.activities = activities || organization.activities;
+        if (projects){
+            organization.projects.push(projects);
+        }
+        // organization.projects = projects || organization.projects;
         organization.profile = profile || organization.profile;
 
         console.log("reqbody: ",req.body)

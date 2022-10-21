@@ -64,30 +64,40 @@ var postNewOrganization = function postNewOrganization(req, res) {
             req.body.images = req.file.path;
           } else {
             req.body.images = " ";
-          }
+          } //salah
+
 
           createdOrganization = new _organizationModel.Organizations(req.body);
-          _context2.next = 5;
+
+          if (req.body.activities) {
+            createdOrganization.activities.push(req.body.activities);
+          }
+
+          if (req.body.projects) {
+            createdOrganization.projects.push(req.body.projects);
+          }
+
+          _context2.next = 7;
           return regeneratorRuntime.awrap(createdOrganization.save());
 
-        case 5:
+        case 7:
           res.status(201).json(createdOrganization);
-          _context2.next = 11;
+          _context2.next = 13;
           break;
 
-        case 8:
-          _context2.prev = 8;
+        case 10:
+          _context2.prev = 10;
           _context2.t0 = _context2["catch"](0);
           return _context2.abrupt("return", res.status(500).json({
             message: _context2.t0.message
           }));
 
-        case 11:
+        case 13:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[0, 8]]);
+  }, null, null, [[0, 10]]);
 }; // adayang lsaah di getorganizationbyid
 
 
@@ -164,7 +174,12 @@ var putOrganizationById = function putOrganizationById(req, res) {
           organization.name = name || organization.name;
           organization.position = position || organization.position;
           organization.date1 = date1 || organization.date1;
-          organization.date2 = date2 || organization.date2;
+
+          if (date2) {
+            organization.date2 = date2;
+          }
+
+          organization.date2 = organization.date2;
 
           if (req.file) {
             organization.images = req.file.path;
@@ -172,8 +187,16 @@ var putOrganizationById = function putOrganizationById(req, res) {
             organization.images = organization.images;
           }
 
-          organization.activities = activities || organization.activities;
-          organization.projects = projects || organization.projects;
+          if (activities) {
+            organization.activities.push(activities);
+          } // organization.activities = activities || organization.activities;
+
+
+          if (projects) {
+            organization.projects.push(projects);
+          } // organization.projects = projects || organization.projects;
+
+
           organization.profile = profile || organization.profile;
           console.log("reqbody: ", req.body);
           console.log("namey: ", name);
@@ -185,28 +208,28 @@ var putOrganizationById = function putOrganizationById(req, res) {
           console.log("activitiesy: ", activities);
           console.log("projectsy: ", projects);
           console.log("profiley: ", profile);
-          _context4.next = 28;
+          _context4.next = 29;
           return regeneratorRuntime.awrap(organization.save());
 
-        case 28:
+        case 29:
           console.log("reqbody: ", req.body);
           res.json(organization);
-          _context4.next = 35;
+          _context4.next = 36;
           break;
 
-        case 32:
-          _context4.prev = 32;
+        case 33:
+          _context4.prev = 33;
           _context4.t0 = _context4["catch"](8);
           return _context4.abrupt("return", res.status(500).json({
             message: _context4.t0.message
           }));
 
-        case 35:
+        case 36:
         case "end":
           return _context4.stop();
       }
     }
-  }, null, null, [[8, 32]]);
+  }, null, null, [[8, 33]]);
 };
 
 exports.putOrganizationById = putOrganizationById;

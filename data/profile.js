@@ -1,6 +1,6 @@
 
 
-const profile = [
+const profile = [ 
     {
         _id: "634e3d3e0efd4866c6062b35",
         name: "Lintang Birda Saputra",
@@ -10,6 +10,7 @@ const profile = [
         birthDate: "2003-06-11T00:00:00.000Z",
         technologies: [
             {
+                profileId: "634e3d3e0efd4866c6062b35",
                 name: "Express.js",
                 images: "/images/express.png",
                 _id: "634e3d3e0efd4866c6062b36",
@@ -17,6 +18,7 @@ const profile = [
                 updatedAt: "2022-10-18T05:44:30.043Z"
             },
             {
+                profileId: "634e3d3e0efd4866c6062b35",
                 name: "Django",
                 images: "/images/django.png",
                 _id: "634e3d3e0efd4866c6062b37",
@@ -24,6 +26,7 @@ const profile = [
                 updatedAt: "2022-10-18T05:44:30.043Z"
             },
             {
+                profileId: "634e3d3e0efd4866c6062b35",
                 name: "React.js",
                 images: "/images/react.png",
                 _id: "634e3d3e0efd4866c6062b38",
@@ -31,6 +34,7 @@ const profile = [
                 updatedAt: "2022-10-18T05:44:30.043Z"
             },
             {
+                profileId: "634e3d3e0efd4866c6062b35",
                 name: "Redux",
                 images: "/images/redux.png",
                 _id: "634e3d3e0efd4866c6062b39",
@@ -38,6 +42,7 @@ const profile = [
                 updatedAt: "2022-10-18T05:44:30.044Z"
             },
             {
+                profileId: "634e3d3e0efd4866c6062b35",
                 name: "Tailwind css",
                 images: "/images/tailwind.jpg",
                 _id: "634e3d3e0efd4866c6062b3a",
@@ -45,6 +50,7 @@ const profile = [
                 updatedAt: "2022-10-18T05:44:30.044Z"
             },
             {
+                profileId: "634e3d3e0efd4866c6062b35",
                 name: "Javascript",
                 images: "/images/javascript.png",
                 _id: "634e3d3e0efd4866c6062b3b",
@@ -81,15 +87,13 @@ const profile = [
                 date2: "2022-10-19T00:00:00.000Z"
             }
         ],
-        createdAt: "2022-10-18T05:44:30.044Z",
-        updatedAt: "2022-10-19T08:18:06.166Z",
-        __v: 2
+
     },
     {
         _id: "634faae0d46f5c3925b4ecf0",
         name: "None",
         description: "None",
-        education: image,
+        education: "None",
         image: "None",
         birthDate: "2022-10-19T00:00:00.000Z",
         technologies: [
@@ -129,9 +133,7 @@ const profile = [
                 date2: "2022-10-19T00:00:00.000Z"
             }
         ],
-        createdAt: "2022-10-19T07:44:32.141Z",
-        updatedAt: "2022-10-19T08:17:05.108Z",
-        __v: 2
+    
     }
 ]
 

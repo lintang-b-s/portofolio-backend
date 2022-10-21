@@ -7,7 +7,7 @@ const organizationSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: true,
+            
         },
         position: {
             type: String,
@@ -22,14 +22,14 @@ const organizationSchema = new mongoose.Schema(
         images: {
             type: String
         },
-        activities: {
+        activities: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Activities",
-        },
-        projects: {
+        }],
+        projects: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Project"
-        },
+        }],
         profile: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Profile"
