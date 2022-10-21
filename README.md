@@ -1,2 +1,0 @@
-# portofolio
-Lintang B S
