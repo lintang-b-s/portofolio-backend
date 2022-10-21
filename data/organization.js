@@ -5,9 +5,8 @@ const organizations = [
         position: "Back-end",
         date1: "2022-09-26T17:00:00.000Z",
         image: "/images/omahti.jpg",
-        __v: 0,
-        createdAt: "2022-10-18T05:44:30.023Z",
-        updatedAt: "2022-10-19T08:10:09.157Z",
+    
+      
         profile: {
             _id: "634e3d3e0efd4866c6062b35",
             name: "Lintang Birda Saputra"
@@ -38,9 +37,7 @@ const organizations = [
             _id: "634faae0d46f5c3925b4ecf0",
             name: "None"
         },
-        createdAt: "2022-10-19T06:43:16.469Z",
-        updatedAt: "2022-10-19T08:10:29.274Z",
-        __v: 0,
+     
         projects: {
             _id: "634fac5b60c8629acc985fe0",
             name: "None",

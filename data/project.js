@@ -10,9 +10,7 @@ const projects = [
             _id: "634e3d3e0efd4866c6062b35",
             name: "Lintang Birda Saputra"
         },
-        createdAt: "2022-10-19T06:33:09.049Z",
-        updatedAt: "2022-10-19T06:45:50.403Z",
-        __v: 0,
+    
         affiliation: {
             _id: "634f9c84ebdcdea7186fef23",
             name: "None",
@@ -41,9 +39,7 @@ const projects = [
             _id: "634faae0d46f5c3925b4ecf0",
             name: "None"
         },
-        createdAt: "2022-10-19T07:50:51.997Z",
-        updatedAt: "2022-10-19T07:50:51.997Z",
-        __v: 0
+
     }
 ]
 export default projects

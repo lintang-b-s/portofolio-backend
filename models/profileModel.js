@@ -36,7 +36,7 @@ const technologiesSchema = new mongoose.Schema(
         timestamps: true,
       }
     );
-
+  
 
 const profileSchema = new mongoose.Schema(
     {

@@ -29,16 +29,16 @@ const userRegister = (req, res, next) => {
             res.setHeader('Content-Type', 'application/json');
             res.json({err: err});
         }
-        else {
+        else { 
             if (req.body.firstname) {
                 user.firstname = req.body.firstname;
             }
             if (req.body.lastname) {
                 user.lastname = req.body.lastname;
             }
-            if (req.body.admin) {
-                user.admin = req.body.admin;
-            }
+            // if (req.body.admin) {
+            //     user.admin = req.body.admin;
+            // }
             user.save((err, user) => {
                 if (err) {
                     res.statusCode = 500;
