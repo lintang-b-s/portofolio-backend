@@ -121,12 +121,6 @@ const putProjectById = async(req, res) => {
             upload_preset: "portofolio"});
         
         project.images= uploadedResponse;
-       
-
-        console.log("selesai upload: ",req.body)
-        // console.log("req.file.path: ", req.file.path)
-        
-      
         await project.save();
         res.json(project);
     } catch (error) {

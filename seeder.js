@@ -102,8 +102,7 @@ const importData = async () => {
             .populate("organizations", "name position date1 date2 activities projects")
             .populate("projects", "name description date1 technologies affiliation")    
             ;
-        console.log(idProf[0].organizations[0].name)
-        console.log(idProf[0].projects)
+
 
         process.exit();
        

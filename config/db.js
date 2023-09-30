@@ -12,9 +12,6 @@ const dbUrl = process.env.DB_URL;
 
 const connectDB = async () => {
     try {
-        console.log(dbUrl)
-        console.log(process.env.DB_URL);
-        console.log(process.env.NODE_ENV)
         const conn = await mongoose.connect(dbUrl, {
             useNewUrlParser: true,
          
@@ -23,7 +20,7 @@ const connectDB = async () => {
                 
         });
 
-        console.log(`MongoDB Connected: ${conn.connection.host}`);
+        console.log(`MongoDB Connected!!!`);
     } catch (error) {
         console.error(`Error: ${error.message}`);
         process.exit(1);

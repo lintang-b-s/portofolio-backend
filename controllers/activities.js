@@ -92,9 +92,6 @@ const putActivitiesById = async(req, res) => {
         //     activities.affiliation = activities.affiliation._id
         // }
         activities.profile = profile || activities.profile;
-        console.log("req.body: \n", req.body);
-        console.log("profile: ", profile)
-
         await activities.save();
         res.json(activities);
     }

@@ -45,12 +45,10 @@ const postNewOrganization = async(req, res) => {
 // adayang lsaah di getorganizationbyid
 const getOrganizationById = async(req, res) => {
     try{
-        console.log("coba bisa gak ")
         const organization = await Organizations.findById(req.params.id)
             .populate("projects", "name description date1 technologies affiliation")
             .populate("activities", "name description date1 date2")
             .populate("profile", "name");
-        console.log("kalo keluar berarti bisa querynya")
         if (!organization) {
             res.status(404);
             throw new Error("Organization tidak ditemukan");
@@ -74,8 +72,6 @@ const putOrganizationById = async(req, res) => {
         projects,
         profile
     } = req.body;
-    console.log("reqbody: ",req.body)
-
     const organization = await Organizations.findById(req.params.id);
     if (!organization) {
         res.status(404);
@@ -98,18 +94,7 @@ const putOrganizationById = async(req, res) => {
         organization.images = uploadedResponse;
        
         organization.profile = profile || organization.profile;
-
-        console.log("reqbody: ",req.body)
-        console.log("namey: ",name)
-        console.log("positiony: ",position)
-        console.log("date1y: ",date1)
-        console.log("date2y: ",date2)
-        // console.log("req.file.pathy: ",req.file.path)
- 
-        console.log("profiley: ",profile)
-
         await organization.save();
-        console.log("reqbody: ",req.body)
         res.json(organization);
     } catch (error) {
         return res.status(500).json({ message: error.message });

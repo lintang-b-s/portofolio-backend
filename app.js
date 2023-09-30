@@ -1,4 +1,3 @@
-import  createError  from 'http-errors' ;
 import  express  from 'express' ;
 import  path  from 'path' ;
 import  cookieParser  from 'cookie-parser' ;
@@ -82,7 +81,6 @@ const __dirname = path.resolve();
 // yang bener yang atas
 app.use(express.static(__dirname))
 // app.use(express.static(path.join(__dirname + "/frontend")))
-console.log("file: ",__dirname + "/frontend")
 
 // app.get('*', (req, res) => 
 //   res.sendFile(path.join(__dirname, 'public/index.html'))  

@@ -83,9 +83,7 @@ const putProfile = async(req, res) => {
 
     const profile = await Profile.findById(req.params.id);
     if(!profile) {
-        res.status(404);
-        console.log("tidak ditemukan profilenya")
-        throw new Error("Profile tidak ditemukan");
+        res.sendStatus(404);
         
     } 
     try {
@@ -100,7 +98,6 @@ const putProfile = async(req, res) => {
  
         profile.image = uploadedResponse;
 
-        console.log("uploadded image: " ,uploadedResponse)
         if (req.body.organizations){
             profile.organizations.push(req.body.organizations)
         }else{
@@ -116,9 +113,7 @@ const putProfile = async(req, res) => {
         }else{
             profile.activities =  profile.activities;
         }
-        console.log(uploadedResponse)
         await profile.save();
-        console.log("akan save profile")
         return res.json(profile);
     } catch (error) {
         return res.status(500).json({ message: error.message });
@@ -157,9 +152,6 @@ const createProfileTechnologies = async(req, res) => {
             name: req.body.name,
             images: uploadedResponse
         });
-        console.log("profile id: ", profile._id);
-        console.log("name tech: ", req.body.name);
-        console.log("file path: ", uploadedResponse)
         profile.technologies.push(newTech);
         profile.save();
         res.json(profile);
