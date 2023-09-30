@@ -30,6 +30,7 @@ const getProfile = async(req, res) => {
 
 const postProfile = async (req, res) => {
     try{  
+       
         const createdProfile = new Profile(req.body);
         if (req.body.organizations){
             createdProfile.organizations.push(req.body.affiliation)
@@ -42,9 +43,7 @@ const postProfile = async (req, res) => {
         }
 
 
-        
-
-        
+    
         await createdProfile.save();
         res.status(201).json(createdProfile)
 
@@ -131,14 +130,27 @@ const putProfile = async(req, res) => {
 //@desc menambah technologies
 //@route POST /api/adins/profile/:id/technologies
 const createProfileTechnologies = async(req, res) => {
-    const profile = await Profile.findById(req.params.id);
+    const error = {
+        message:"user not found"
+    }
+    const serverError  ={
+        message: "server error"
+    }
+    const userId=  mongoose.Types.ObjectId(req.params.id);
+
+    const profiles= await Profile.find();
+  
+    const profile = await Profile.findById(userId);
     if (!profile){
-        res.status(404);
-        throw new Error("Profile not found")
+        res.sendStatus(404);
+        return;
     }
     try {
+        const b64 = Buffer.from(req.file.buffer).toString("base64");
+        let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+    
 
-        const uploadedResponse = await cloudinary.uploader.upload(req.body.images, {
+        const uploadedResponse = await cloudinary.uploader.upload(dataURI, {
             upload_preset: "portofolio"});
         const newTech = new Technologies({
             profileId: profile._id,
@@ -152,8 +164,7 @@ const createProfileTechnologies = async(req, res) => {
         profile.save();
         res.json(profile);
     } catch (error) {
-        res.status(500);
-        throw new Error(error);
+        res.sendStatus(500);
     }
 }
 

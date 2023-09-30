@@ -245,7 +245,7 @@ var createProfileTechnologies = function createProfileTechnologies(req, res) {
         case 6:
           _context5.prev = 6;
           _context5.next = 9;
-          return regeneratorRuntime.awrap(_cloudinary["default"].uploader.upload(req.body.images, {
+          return regeneratorRuntime.awrap(_cloudinary["default"].uploader.upload(req.file.path, {
             upload_preset: "portofolio"
           }));
 

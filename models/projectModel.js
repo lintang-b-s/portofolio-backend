@@ -46,10 +46,7 @@ const projectSchema = new mongoose.Schema(
         profile: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Profile",
-          }
-
-
-        
+          }  
     },
     {
       timestamps: true,

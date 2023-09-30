@@ -39,24 +39,18 @@ const getProjectById = async(req, res) => {
 }
 
 const postNewProject = async(req, res) => {
-
-    
-
     try{
      
-        // if (req.file) {
-        //     req.body.images = req.file.path
-        // }else{
-        //     req.body.images = " ";
-        // }
-
-        
-        const uploadedResponse = await cloudinary.uploader.upload(req.body.images, {
+        const b64 = Buffer.from(req.file.buffer).toString("base64");
+        let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+    
+       
+        const uploadedResponse = await cloudinary.uploader.upload(dataURI, {
             upload_preset: "portofolio"});
         
-        req.body.images= uploadedResponse;
+        req.file.path= uploadedResponse;
         
-        const newProject = new Project(req.body);
+        const newProject = new Project({...req.body, images: uploadedResponse});
      
         
         await newProject.save();
@@ -77,8 +71,7 @@ const deleteProjectById = async(req, res) => {
             await project.remove();
             res.json({ message: "Project dihapus "});
         }else {
-            res.json(404);
-            throw new Error("Project tidak ditemukan!");
+            res.sendStatus(404);
         }
 
     }catch (error) {
@@ -91,23 +84,21 @@ const putProjectById = async(req, res) => {
         name,
         description,
         date1,
-        images,
         technologies,
         affiliation,
         profile
 
     } = req.body;
-    console.log("reqbody: ",req.body)
+    const b64 = Buffer.from(req.file.buffer).toString("base64");
+    let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+
+    
     const project = await Project.findById(req.params.id);
     if(!project) {
         res.status(404)
         throw new Error("Projject tak ditemukan")
     }
     try {
-
-     
-       
-        
 
         
         project.name = name || project.name;
@@ -120,19 +111,19 @@ const putProjectById = async(req, res) => {
         // }
         project.technologies = technologies || project.technologies;
         
-        project.affiliation = affiliation || project.affiliation;
+        project.affiliation = affiliation || project.affiliation ? project.affiliation: "";
         project.profile = profile || project.profile;
 
     
        
 
-        const uploadedResponse = await cloudinary.uploader.upload(req.body.images, {
+        const uploadedResponse = await cloudinary.uploader.upload(dataURI, {
             upload_preset: "portofolio"});
         
         project.images= uploadedResponse;
        
 
-        console.log("reqbody: ",req.body)
+        console.log("selesai upload: ",req.body)
         // console.log("req.file.path: ", req.file.path)
         
       

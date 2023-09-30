@@ -22,22 +22,14 @@ const getAllOrganizations = async(req, res) => {
 
 const postNewOrganization = async(req, res) => {
     try {
-        // if (req.file) {
-        //     req.body.images = req.file.path
-        // }else {
-        //     req.body.images = " ";
-        // }
-        
-        //salah
-        const createdOrganization = new Organizations(req.body);
-        if (req.body.activities){
-            createdOrganization.activities.push(req.body.activities)
-        }
-        if (req.body.projects){
-            createdOrganization.projects.push(req.body.projects);
-        }
 
-        const uploadedResponse = await cloudinary.uploader.upload(req.body.images, {
+        const createdOrganization = new Organizations(req.body);
+     
+        const b64 = Buffer.from(req.file.buffer).toString("base64");
+        let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+    
+
+        const uploadedResponse = await cloudinary.uploader.upload(dataURI, {
             upload_preset: "portofolio"});
 
         createdOrganization.images= uploadedResponse;
@@ -97,24 +89,14 @@ const putOrganizationById = async(req, res) => {
             organization.date2 = date2
         }
         organization.date2 =  organization.date2;
-        // if (req.file) {
-        //     organization.images = req.file.path
-        // }else {
-        //     organization.images = organization.images;
-        // }
-
-        const uploadedResponse = await cloudinary.uploader.upload(req.body.images, {
+        const b64 = Buffer.from(req.file.buffer).toString("base64");
+        let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+    
+        const uploadedResponse = await cloudinary.uploader.upload(dataURI, {
             upload_preset: "portofolio"});
 
         organization.images = uploadedResponse;
-        if (activities){
-            organization.activities.push(activities);
-        }
-        // organization.activities = activities || organization.activities;
-        if (projects){
-            organization.projects.push(projects);
-        }
-        // organization.projects = projects || organization.projects;
+       
         organization.profile = profile || organization.profile;
 
         console.log("reqbody: ",req.body)
@@ -123,9 +105,7 @@ const putOrganizationById = async(req, res) => {
         console.log("date1y: ",date1)
         console.log("date2y: ",date2)
         // console.log("req.file.pathy: ",req.file.path)
-        console.log("namey: ",name)
-        console.log("activitiesy: ",activities)
-        console.log("projectsy: ",projects)
+ 
         console.log("profiley: ",profile)
 
         await organization.save();

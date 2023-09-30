@@ -113,13 +113,13 @@ var postNewProject = function postNewProject(req, res) {
         case 0:
           _context3.prev = 0;
           _context3.next = 3;
-          return regeneratorRuntime.awrap(_cloudinary["default"].uploader.upload(req.body.images, {
+          return regeneratorRuntime.awrap(_cloudinary["default"].uploader.upload(req.file.path, {
             upload_preset: "portofolio"
           }));
 
         case 3:
           uploadedResponse = _context3.sent;
-          req.body.images = uploadedResponse;
+          req.file.path = uploadedResponse;
           newProject = new _projectModel.Project(req.body);
           _context3.next = 8;
           return regeneratorRuntime.awrap(newProject.save());
@@ -236,7 +236,7 @@ var putProjectById = function putProjectById(req, res) {
           project.affiliation = affiliation || project.affiliation;
           project.profile = profile || project.profile;
           _context5.next = 17;
-          return regeneratorRuntime.awrap(_cloudinary["default"].uploader.upload(req.body.images, {
+          return regeneratorRuntime.awrap(_cloudinary["default"].uploader.upload(req.file.path, {
             upload_preset: "portofolio"
           }));
 

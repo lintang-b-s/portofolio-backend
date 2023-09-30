@@ -15,7 +15,7 @@ const postNewActivities = async(req, res) => {
     try {
         const createdActivities = new Activities(req.body);
         
-        await createdActivities
+        // await createdActivities
 
         await createdActivities.save();
         res.status(201).json(createdActivities)
@@ -81,7 +81,11 @@ const putActivitiesById = async(req, res) => {
         activities.date1 = date1 || activities.date1;
         activities.date2 = date2 || activities.date2;
         activities.profile = profile || activities.profile;
-        activities.affiliation = affiliation || activities.affiliation._id;
+        if (activities.affiliation && affiliation == 'undefined'){
+            activities.affiliation=activities.affiliation._id;
+        }else if (affiliation !== 'undefined'){
+            activities.affiliation = affiliation
+        }
         // if(activities){
         //     activities.affiliation = affiliation
         // }else{

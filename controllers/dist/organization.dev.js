@@ -64,9 +64,9 @@ var postNewOrganization = function postNewOrganization(req, res) {
         case 0:
           _context2.prev = 0;
           // if (req.file) {
-          //     req.body.images = req.file.path
+          //     req.file.path = req.file.path
           // }else {
-          //     req.body.images = " ";
+          //     req.file.path = " ";
           // }
           //salah
           createdOrganization = new _organizationModel.Organizations(req.body);
@@ -80,7 +80,7 @@ var postNewOrganization = function postNewOrganization(req, res) {
           }
 
           _context2.next = 6;
-          return regeneratorRuntime.awrap(_cloudinary["default"].uploader.upload(req.body.images, {
+          return regeneratorRuntime.awrap(_cloudinary["default"].uploader.upload(req.file.path, {
             upload_preset: "portofolio"
           }));
 
@@ -196,7 +196,7 @@ var putOrganizationById = function putOrganizationById(req, res) {
           // }
 
           _context4.next = 16;
-          return regeneratorRuntime.awrap(_cloudinary["default"].uploader.upload(req.body.images, {
+          return regeneratorRuntime.awrap(_cloudinary["default"].uploader.upload(req.file.path, {
             upload_preset: "portofolio"
           }));
 
